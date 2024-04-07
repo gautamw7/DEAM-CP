@@ -1,0 +1,36 @@
+#include <SoftwareSerial.h>
+#include <TinyGPS++.h>
+
+SoftwareSerial RFIDscanner(2, 3); // RX, TX for RFID scanner (pin 2 for RX, pin 3 for TX)
+SoftwareSerial GPSserial(7, 8); // RX, TX for NEO 6M GPS module (pin 7 for RX, pin 8 for TX)
+
+TinyGPSPlus gps;
+
+void setup() {
+  Serial.begin(9600); // Initialize hardware serial for debugging
+  RFIDscanner.begin(9600); // Initialize software serial for RFID scanner
+  GPSserial.begin(9600); // Initialize software serial for GPS module
+}
+
+void loop() {
+  // Read RFID data
+  if (RFIDscanner.available()) {
+    char rfidData = RFIDscanner.read();
+    // Process RFID data here
+  }
+
+  // Read GPS data
+  if (GPSserial.available()) {
+    char gpsData = GPSserial.read();
+    if (gps.encode(gpsData)) {
+      float latitude = gps.location.lat();
+      float longitude = gps.location.lng();
+      // Process GPS data here
+      // Create a payload with RFID and GPS data
+      String payload = "RFID: [RFID DATA], Latitude: " + String(latitude, 6) + ", Longitude: " + String(longitude, 6);
+      
+      // Send payload to NodeMCU
+      Serial.println("Sending data to NodeMCU: " + payload);
+    }
+  }
+}
