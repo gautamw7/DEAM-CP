@@ -1,0 +1,11 @@
+void setup() {
+  Serial.begin(9600); // Initialize Serial for debugging
+}
+
+void loop() {
+  if (Serial.available()) {
+    String data = Serial.readStringUntil('\n'); // Read data from Arduino Uno
+    Serial.println("Received data from Arduino Uno: " + data);
+    // Process or display data as needed
+  }
+}
