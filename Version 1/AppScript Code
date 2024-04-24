@@ -1,5 +1,5 @@
 // Enter Spreadsheet ID here
-var SS = SpreadsheetApp.openById("1SIWGTfRfH9Yi_SALKS64RJiStSVWGmjwnSUQMDlI5i4");
+var SS = SpreadsheetApp.openById('1SIWGTfRfH9Yi_SALKS64RJiStSVWGmjwnSUQMDlI5i4');
 var timezone = "asia/calcutta";
 var hours = 0;
 var str = "";
@@ -38,8 +38,6 @@ function doPost(e) {
     var value3 = dataArr [3];  //Phone Number
     var value4 = dataArr [4];  //Address
     var value5 = dataArr [5];  //Gate Number
-    var latitude = dataArr[6]; // index 6 is latitude in the Arduino payload
-    var longitude = dataArr[7]; // index 7 is longitude in the Arduino payload
   
     //------------------------------------------------------------------------------------------------------
     /* STEP1 - This piece of code searches for the student ID in the attendance sheet. If the student ID is found, 
@@ -88,8 +86,6 @@ function doPost(e) {
          sheet.getRange('G2').setValue(value2);     // publish LAST NAME cell G2
          sheet.getRange('H2').setValue(value3);     // publish PHONE NUMBER cell H2
          sheet.getRange('I2').setValue(value4);     // publish ADDRESS cell I2
-         sheet.getRange('J2').setValue(latitude); // publish LATITUDE cell J2
-         sheet.getRange('K2').setValue(longitude); // publish LONGITUDE cell K2
          
          str = "Success"; // string to return back to Arduino serial console
          SpreadsheetApp.flush();
@@ -99,17 +95,11 @@ function doPost(e) {
          
          var publish_array = new Array(); // create a new array
          
-         publish_array[0] = value0; // publish Student ID to cell A2
-         publish_array[1] = Curr_Time; // publish Time In to cell B2
-         publish_array[2] = ""; // publish Time Out to cell C2 (initialize as empty)
-         publish_array[3] = value5; // publish Gate Number to cell D2
-         publish_array[4] = Curr_Date; // publish current date to cell E2
-         publish_array[5] = value1; // publish First Name cell F2
-         publish_array[6] = value2; // publish Last Name cell G2
-         publish_array[7] = latitude; // publish Latitude cell H2
-         publish_array[8] = longitude; // publish Longitude cell I2
-         publish_array[9] = value3; // publish Phone Number cell J2
-         publish_array[10] = value4; // publish Address cell K2
+         publish_array [0] = value0;    // publish Student ID to cell A2
+         publish_array [1] = Curr_Time; // publish Time In to cell B2
+         publish_array [3] = Curr_Date; // publish current date to cell D2
+         publish_array [4] = value1;    // publish First Name cell E2
+         publish_array [5] = value2;    // publish Last Name cell F2
          
          sheet.appendRow(publish_array); // publish data in publish_array after the last row of data in the sheet
          
