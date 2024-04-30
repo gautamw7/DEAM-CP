@@ -32,7 +32,7 @@ function doPost(e) {
     //var Curr_Time = Utilities.formatDate(Curr_Date, timezone, 'HH:mm:ss');
 
     // comming from Arduino code
-    var value0 = dataArr [0];  //Student ID
+    var value0 = dataArr [0];  //User ID
     var value1 = dataArr [1];  //First Name
     var value2 = dataArr [2];  //Last Name
     var value3 = dataArr [3];  //Phone Number
